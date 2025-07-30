@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<!-- This is the main file for the robot. it contains many other xacro files all included
+ in one place. -->
+<robot name="my_robot"
+  xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="robot_core.xacro" />
+  <xacro:include filename="gazebo_parameters.xacro" />
+  <xacro:include filename="ros2_control.xacro" />
+</robot>
