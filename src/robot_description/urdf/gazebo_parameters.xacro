@@ -5,37 +5,37 @@
 
 
   <gazebo reference = "rear_right_wheel_link">
-    <mu1>1000000</mu1>
-    <mu2>1000000</mu2>
-    <kp>1000000</kp>
-    <kd>1000000</kd>
+    <mu1>10000000</mu1>
+    <mu2>10000000</mu2>
+    <kp>10000000</kp>
+    <kd>10000000</kd>
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
     <fdir1>1 0 0</fdir1>
   </gazebo>
   <gazebo reference = "rear_left_wheel_link">
-    <mu1>1000000</mu1>
-    <mu2>1000000</mu2>
-    <kp>1000000</kp>
-    <kd>1000000</kd>
+    <mu1>10000000</mu1>
+    <mu2>10000000</mu2>
+    <kp>10000000</kp>
+    <kd>10000000</kd>
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
     <fdir1>1 0 0</fdir1>
   </gazebo>
   <gazebo reference = "front_right_wheel_link">
-    <mu1>1000000</mu1>
-    <mu2>1000000</mu2>
-    <kp>1000000</kp>
-    <kd>1000000</kd>
+    <mu1>10000000</mu1>
+    <mu2>10000000</mu2>
+    <kp>10000000</kp>
+    <kd>10000000</kd>
     <minDepth>0.001</minDepth>
     <maxVel>10</maxVel>
     <fdir1>1 0 0</fdir1>
   </gazebo>
   <gazebo reference = "front_left_wheel_link">
-    <mu1>1000000</mu1>
-    <mu2>1000000</mu2>
-    <kp>1000000</kp>
-    <kd>1000000</kd>
+    <mu1>10000000</mu1>
+    <mu2>10000000</mu2>
+    <kp>10000000</kp>
+    <kd>10000000</kd>
     <minDepth>0.001</minDepth>
     <maxVel>10</maxVel>
     <fdir1>1 0 0</fdir1>
