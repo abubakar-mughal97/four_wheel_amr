@@ -5,7 +5,7 @@
   <ros2_control name = "RobotSystem" type = "system">
 
     <hardware>
-      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+      <plugin>gz_ros2_control/GazeboSystem</plugin>
     </hardware>
 
     <joint name="rear_left_wheel_joint">

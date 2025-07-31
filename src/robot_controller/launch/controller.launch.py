@@ -6,6 +6,12 @@ import os
 
 def generate_launch_description():
 
+    params_file = os.path.join(
+        get_package_share_directory("robot_controller"),
+        "config",
+        "controller_params.yaml",
+    )
+
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
@@ -14,6 +20,7 @@ def generate_launch_description():
             "--controller-manager",
             "/controller_manager",
         ],
+        parameters=[params_file],
     )
 
     front_steering_controller = Node(
@@ -24,6 +31,7 @@ def generate_launch_description():
             "--controller-manager",
             "/controller_manager",
         ],
+        parameters=[params_file],
     )
 
     rear_velocity_controller = Node(
@@ -34,6 +42,7 @@ def generate_launch_description():
             "--controller-manager",
             "/controller_manager",
         ],
+        parameters=[params_file],
     )
 
     return LaunchDescription(
