@@ -16,21 +16,21 @@ def generate_launch_description():
         ],
     )
 
-    forward_velocity_controller = Node(
+    front_steering_controller = Node(
         package="controller_manager",
         executable="spawner",
         arguments=[
-            "forward_velocity_controller",
+            "front_steering_controller",
             "--controller-manager",
             "/controller_manager",
         ],
     )
 
-    forward_position_controller = Node(
+    rear_velocity_controller = Node(
         package="controller_manager",
         executable="spawner",
         arguments=[
-            "forward_position_controller",
+            "rear_velocity_controller",
             "--controller-manager",
             "/controller_manager",
         ],
@@ -39,7 +39,7 @@ def generate_launch_description():
     return LaunchDescription(
         [
             joint_state_broadcaster_spawner,
-            forward_velocity_controller,
-            forward_position_controller,
+            front_steering_controller,
+            rear_velocity_controller,
         ]
     )

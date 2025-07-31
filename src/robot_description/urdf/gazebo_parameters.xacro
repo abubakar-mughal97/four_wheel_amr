@@ -41,9 +41,33 @@
     <fdir1>1 0 0</fdir1>
   </gazebo>
 
+
+  <gazebo reference = "front_left_steering_link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <kp>10000000</kp>
+    <kd>10000000</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>10</maxVel>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+  <gazebo reference = "front_right_steering_link">
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <kp>10000000</kp>
+    <kd>10000000</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>10</maxVel>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
+
+
   <gazebo>
     <plugin filename ="gz_ros2_control-system" name = "gz_ros2_control::GazeboSimROS2ControlPlugin">
       <parameters>$(find robot_controller)/config/controllers.yaml</parameters>
+
+
     </plugin>
   </gazebo>
 
