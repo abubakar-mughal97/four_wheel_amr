@@ -15,69 +15,102 @@
 
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint" />
-    <child link="base_link" />
+    <child link="bottom_link" />
     <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
 
 
-  <!-- Base link of the robot -->
-  <link name="base_link">
+  <!-- Bottom link of the robot -->
+  <link name="bottom_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <box size="${box_length} ${box_width} ${box_height}" />
+        <box size="${bottom_link_length} ${bottom_link_width} ${bottom_link_height}" />
       </geometry>
-      <material name="red"/>
+      <material name="grey"/>
     </visual>
     <collision>
       <geometry>
-        <box size="${box_length} ${box_width} ${box_height}" />
+        <box size="${bottom_link_length} ${bottom_link_width} ${bottom_link_height}" />
       </geometry>
     </collision>
-    <xacro:inertial_box mass="${box_mass}" x="${box_length}" y="${box_width}" z="${box_height}">
+    <xacro:inertial_box mass="${bottom_link_mass}" x="${bottom_link_length}" y="${bottom_link_width}" z="${bottom_link_height}">
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </xacro:inertial_box>
   </link>
 
-
-  <!-- Rear Left Wheel link -->
-  <link name="rear_left_wheel_link">
+  <link name="front_left_wheel_connector">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+        <cylinder radius="${wheel_connector_radius}" length="${wheel_connector_length}" />
       </geometry>
-      <material name="black"/>
+      <material name="red"/>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+        <cylinder radius="${wheel_connector_radius}" length="${wheel_connector_length}" />
       </geometry>
     </collision>
-    <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_length}" radius="${wheel_radius}">
+    <xacro:inertial_cylinder mass="${wheel_connector_mass}" length="${wheel_connector_length}" radius="${wheel_connector_radius}">
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </xacro:inertial_cylinder>
   </link>
 
-
-
-  <!-- Rear right wheel link -->
-  <link name="rear_right_wheel_link">
+  <link name="front_right_wheel_connector">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+        <cylinder radius="${wheel_connector_radius}" length="${wheel_connector_length}" />
       </geometry>
-      <material name="black"/>
+      <material name="red"/>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+        <cylinder radius="${wheel_connector_radius}" length="${wheel_connector_length}" />
       </geometry>
     </collision>
-    <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_length}" radius="${wheel_radius}">
+    <xacro:inertial_cylinder mass="${wheel_connector_mass}" length="${wheel_connector_length}" radius="${wheel_connector_radius}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+  </link>
+
+  <link name="rear_left_wheel_connector">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_connector_radius}" length="${wheel_connector_length}" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_connector_radius}" length="${wheel_connector_length}" />
+      </geometry>
+    </collision>
+    <xacro:inertial_cylinder mass="${wheel_connector_mass}" length="${wheel_connector_length}" radius="${wheel_connector_radius}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+  </link>
+
+  <link name="rear_right_wheel_connector">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_connector_radius}" length="${wheel_connector_length}" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${wheel_connector_radius}" length="${wheel_connector_length}" />
+      </geometry>
+    </collision>
+    <xacro:inertial_cylinder mass="${wheel_connector_mass}" length="${wheel_connector_length}" radius="${wheel_connector_radius}">
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </xacro:inertial_cylinder>
   </link>
@@ -118,11 +151,9 @@
         <cylinder radius="0.001" length="0.01" />
       </geometry>
     </collision>
-    <inertial>
-      <mass value="0.01" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
-    </inertial>
+    <xacro:inertial_cylinder mass="0.001" length="0.001" radius="0.01">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
   </link>
 
 
@@ -153,7 +184,6 @@
       <geometry>
         <cylinder radius="0.001" length="0.01" />
       </geometry>
-
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -161,34 +191,70 @@
         <cylinder radius="0.001" length="0.01" />
       </geometry>
     </collision>
-    <inertial>
-      <mass value="0.01" />
-      <origin xyz="0 0 0" />
-      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
-    </inertial>
+    <xacro:inertial_cylinder mass="0.001" length="0.001" radius="0.01">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
   </link>
 
 
-  <!-- Joints-->
-  <joint name="rear_left_wheel_joint" type="continuous">
-    <parent link="base_link" />
-    <child link="rear_left_wheel_link" />
-    <origin xyz="-${box_length/2} ${(box_width/2)+(wheel_length/2)} -${box_height/2}" rpy="-${3.14159/2} 0 0" />
-    <axis xyz="0 0 1" />
-  </joint>
+
+  <!-- Rear Left Wheel-->
+  <link name="rear_left_wheel_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+      </geometry>
+    </collision>
+    <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_length}" radius="${wheel_radius}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+  </link>
 
 
-  <joint name="rear_right_wheel_joint" type="continuous">
-    <parent link="base_link" />
-    <child link="rear_right_wheel_link" />
-    <origin xyz="-${box_length/2} -${(box_width/2)+(wheel_length/2)} -${box_height/2}" rpy="-${3.14159/2} 0 0" />
-    <axis xyz="0 0 1" />
+
+  <!-- Rear right wheel -->
+  <link name="rear_right_wheel_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}" />
+      </geometry>
+    </collision>
+    <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_length}" radius="${wheel_radius}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+  </link>
+
+
+
+  <!-- Bottom Joints-->
+
+  <joint name="front_left_wheel_connector_joint" type="fixed">
+    <parent link="bottom_link" />
+    <child link="front_left_wheel_connector" />
+    <origin xyz="${bottom_link_length/2-0.05} ${bottom_link_width/2} 0" rpy="-${3.1459/2} 0 0" />
   </joint>
+
 
   <joint name="front_left_steering_joint" type="revolute">
-    <parent link="base_link" />
+    <parent link="front_left_wheel_connector" />
     <child link="front_left_steering_link" />
-    <origin xyz="${box_length/2} ${(box_width/2)+(wheel_length/2)} -${box_height/2}" rpy="-${3.14159/2} 0 0" />
+    <origin xyz="0 0 ${wheel_connector_length/2}" rpy="0 0 0" />
     <axis xyz="0 1 0" />
     <limit lower="-1.0" upper="1.0" effort="100" velocity="100" />
   </joint>
@@ -198,13 +264,19 @@
     <child link="front_left_wheel_link" />
     <origin xyz="0 0 0" rpy="0 0 0" />
     <axis xyz="0 0 1" />
-    <limit lower="-1.0" upper="1.0" effort="100" velocity="100" />
+    <limit effort="100" velocity="100" />
+  </joint>
+
+  <joint name="front_right_wheel_connector_joint" type="fixed">
+    <parent link="bottom_link" />
+    <child link="front_right_wheel_connector" />
+    <origin xyz="${bottom_link_length/2-0.05} -${bottom_link_width/2} 0" rpy="-${3.1459/2} 0 0" />
   </joint>
 
   <joint name="front_right_steering_joint" type="revolute">
-    <parent link="base_link" />
+    <parent link="front_right_wheel_connector" />
     <child link="front_right_steering_link" />
-    <origin xyz="${box_length/2} -${(box_width/2)+(wheel_length/2)} -${(box_height/2)}" rpy="-${3.14159/2} 0 0" />
+    <origin xyz="0 0 -${wheel_connector_length/2}" rpy="0 0 0" />
     <axis xyz="0 1 0" />
     <limit lower="-1.0" upper="1.0" effort="100" velocity="100" />
   </joint>
@@ -214,9 +286,176 @@
     <child link="front_right_wheel_link" />
     <origin xyz="0 0 0" rpy="0 0 0" />
     <axis xyz="0 0 1" />
-    <limit lower="-1.0" upper="1.0" effort="100" velocity="100" />
+    <limit effort="100" velocity="100" />
   </joint>
 
 
+  <joint name="rear_left_wheel_connector_joint" type="fixed">
+    <parent link="bottom_link" />
+    <child link="rear_left_wheel_connector" />
+    <origin xyz="-${bottom_link_length/2-0.05} ${bottom_link_width/2} 0" rpy="-${3.1459/2} 0 0" />
+  </joint>
+
+  <joint name="rear_right_wheel_connector_joint" type="fixed">
+    <parent link="bottom_link" />
+    <child link="rear_right_wheel_connector" />
+    <origin xyz="-${bottom_link_length/2-0.05} -${bottom_link_width/2} 0" rpy="-${3.1459/2} 0 0" />
+  </joint>
+
+
+  <joint name="rear_left_wheel_joint" type="continuous">
+    <parent link="rear_left_wheel_connector" />
+    <child link="rear_left_wheel_link" />
+    <origin xyz="0 0 ${wheel_connector_length/2}" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit effort="100" velocity="100" />
+  </joint>
+
+
+  <joint name="rear_right_wheel_joint" type="continuous">
+    <parent link="rear_right_wheel_connector" />
+    <child link="rear_right_wheel_link" />
+    <origin xyz="0 0 -${wheel_connector_length/2}" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit effort="100" velocity="100" />
+  </joint>
+
+
+
+
+  <!-- -->
+  <!-- -->
+  <!-- TOP LINKS -->
+  <link name="top_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${top_link_length} ${top_link_width} ${top_link_height}" />
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${top_link_length} ${top_link_width} ${top_link_height}" />
+      </geometry>
+    </collision>
+    <xacro:inertial_box mass="${top_link_mass}" x="${top_link_length}" y="${top_link_width}" z="${top_link_height}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_box>
+  </link>
+
+
+  <link name="front_left_to_top_connector">
+    <visual>
+      <origin xyz="0 0 ${bottom_to_top_connector_length/2}" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${bottom_to_top_connector_radius}" length="${bottom_to_top_connector_length}" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${bottom_to_top_connector_length/2}" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${bottom_to_top_connector_radius}" length="${bottom_to_top_connector_length}" />
+      </geometry>
+    </collision>
+    <xacro:inertial_cylinder mass="${bottom_to_top_connector_mass}" length="${bottom_to_top_connector_length}" radius="${bottom_to_top_connector_radius}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+  </link>
+
+  <link name="front_right_to_top_connector">
+    <visual>
+      <origin xyz="0 0 ${bottom_to_top_connector_length/2}" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${bottom_to_top_connector_radius}" length="${bottom_to_top_connector_length}" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${bottom_to_top_connector_length/2}" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${bottom_to_top_connector_radius}" length="${bottom_to_top_connector_length}" />
+      </geometry>
+    </collision>
+    <xacro:inertial_cylinder mass="${bottom_to_top_connector_mass}" length="${bottom_to_top_connector_length}" radius="${bottom_to_top_connector_radius}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+  </link>
+
+  <link name="rear_left_to_top_connector">
+    <visual>
+      <origin xyz="0 0 ${bottom_to_top_connector_length/2}" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${bottom_to_top_connector_radius}" length="${bottom_to_top_connector_length}" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${bottom_to_top_connector_length/2}" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${bottom_to_top_connector_radius}" length="${bottom_to_top_connector_length}" />
+      </geometry>
+    </collision>
+    <xacro:inertial_cylinder mass="${bottom_to_top_connector_mass}" length="${bottom_to_top_connector_length}" radius="${bottom_to_top_connector_radius}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+  </link>
+
+  <link name="rear_right_to_top_connector">
+    <visual>
+      <origin xyz="0 0 ${bottom_to_top_connector_length/2}" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${bottom_to_top_connector_radius}" length="${bottom_to_top_connector_length}" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${bottom_to_top_connector_length/2}" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${bottom_to_top_connector_radius}" length="${bottom_to_top_connector_length}" />
+      </geometry>
+    </collision>
+    <xacro:inertial_cylinder mass="${bottom_to_top_connector_mass}" length="${bottom_to_top_connector_length}" radius="${bottom_to_top_connector_radius}">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:inertial_cylinder>
+  </link>
+
+  <!--TOP JOINTS-->
+  <joint name="front_left_bottom_joint" type="fixed">
+    <parent link="bottom_link" />
+    <child link="front_left_to_top_connector" />
+    <origin xyz="${bottom_link_length/2-0.05} ${bottom_link_width/2-0.05} 0" rpy="0 0 0" />
+  </joint>
+
+  <joint name="front_right_bottom_joint" type="fixed">
+    <parent link="bottom_link" />
+    <child link="front_right_to_top_connector" />
+    <origin xyz="${bottom_link_length/2-0.05} -${bottom_link_width/2-0.05} 0" rpy="0 0 0" />
+  </joint>
+
+  <joint name="rear_left_bottom_joint" type="fixed">
+    <parent link="bottom_link" />
+    <child link="rear_left_to_top_connector" />
+    <origin xyz="-${bottom_link_length/2-0.05} ${bottom_link_width/2-0.05} 0" rpy="0 0 0" />
+  </joint>
+
+  <joint name="rear_right_bottom_joint" type="fixed">
+    <parent link="bottom_link" />
+    <child link="rear_right_to_top_connector" />
+    <origin xyz="-${bottom_link_length/2-0.05} -${bottom_link_width/2-0.05} 0" rpy="0 0 0" />
+  </joint>
+
+  <joint name="front_left_top_joint" type="fixed">
+    <parent link="front_left_to_top_connector" />
+    <child link="top_link" />
+    <origin xyz="-${top_link_length/2-0.05} -${bottom_link_width/2-0.05} ${bottom_to_top_connector_length}" rpy="0 0 0" />
+  </joint>
+
+  <!-- <joint name="front_right_top_joint" type="fixed">
+    <parent link="front_right_to_top_connector" />
+    <child link="top_link" />
+    <origin xyz="0 0 ${bottom_to_top_connector_length}" rpy="0 0 0" />
+  </joint> -->
 
 </robot>

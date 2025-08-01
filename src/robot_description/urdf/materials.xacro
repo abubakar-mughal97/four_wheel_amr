@@ -24,7 +24,7 @@
   </material>
 
   <material name="grey">
-    <color rgba="0 0 0 0.5" />
+    <color rgba="0.25 0.25 0.25 1.0" />
   </material>
 
 </robot>
