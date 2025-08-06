@@ -35,11 +35,18 @@ def generate_launch_description():
             "/controller_manager",
         ],
     )
+    ackermann_controller = Node(
+        package="robot_controller",
+        executable="ackermann_controller.py",
+        parameters=[os.path.join(get_package_share_directory("robot_controller"), "config", "parameters.yaml")],
+        output="screen",
+    )
 
     return LaunchDescription(
         [
             joint_state_broadcaster_spawner,
             front_steering_controller,
             rear_velocity_controller,
+            ackermann_controller,
         ]
     )
