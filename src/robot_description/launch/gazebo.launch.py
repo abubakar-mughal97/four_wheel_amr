@@ -67,12 +67,16 @@ def generate_launch_description():
             "0.1",
         ],
     )
+
+    bridge_params = os.path.join(
+        get_package_share_directory("robot_controller"),
+        "config",
+        "ros_gz_bridge.yaml",
+    )
     gz_ros2_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        arguments=[
-            "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
-        ],
+        arguments=["--ros-args", "-p", f"config_file:={bridge_params}"],
     )
 
     return LaunchDescription(

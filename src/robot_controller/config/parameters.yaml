@@ -3,6 +3,7 @@
     # Body params
     body_length: 0.5
     body_width: 0.3
+    wheel_connector_length: 0.1
 
     # Wheel params
     wheel_radius: 0.05
