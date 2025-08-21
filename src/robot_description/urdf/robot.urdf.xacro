@@ -9,4 +9,5 @@
   <xacro:include filename="gazebo_parameters.xacro" />
   <xacro:include filename="ros2_control.xacro" />
   <xacro:include filename="transmission.xacro" />
+  <xacro:include filename="odom_plugin.xacro" />
 </robot>

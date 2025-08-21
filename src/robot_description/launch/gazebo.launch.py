@@ -8,7 +8,7 @@ from launch.actions import (
     IncludeLaunchDescription,
     SetEnvironmentVariable,
 )
-from launch.substitutions import Command, LaunchConfiguration
+from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from launch_ros.actions import Node
@@ -79,6 +79,18 @@ def generate_launch_description():
         arguments=["--ros-args", "-p", f"config_file:={bridge_params}"],
     )
 
+    rviz_file = "rviz.rviz"
+    rviz_path = PathJoinSubstitution(
+        [get_package_share_directory("robot_description"), rviz_file]
+    )
+
+    rviz2_node = Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        output="screen",
+        arguments=["-d", rviz_path],
+    )
     return LaunchDescription(
         [
             model_arg,
@@ -87,5 +99,6 @@ def generate_launch_description():
             gazebo,
             gz_spawn_entity,
             gz_ros2_bridge,
+            rviz2_node,
         ]
     )

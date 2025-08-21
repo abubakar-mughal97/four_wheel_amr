@@ -57,7 +57,7 @@
       <joint_name>front_right_wheel_joint</joint_name>
       <joint_name>rear_left_wheel_joint</joint_name>
       <joint_name>rear_right_wheel_joint</joint_name>
-      <joint_name>front_left_wheel_connector_joint</joint_name>
+     
     </plugin>
   </gazebo>
 
